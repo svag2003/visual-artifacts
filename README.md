@@ -1,4 +1,4 @@
-# Visual Artifacts
+# Visual Artifacts (/html-it)
 
 **Turn any project, codebase, or idea into one shareable page that _draws_ its architecture — instead of burying it in a wall of text.** A [Claude Code](https://claude.com/claude-code) skill.
 
