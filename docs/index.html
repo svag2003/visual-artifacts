@@ -3776,7 +3776,7 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   function mode() { return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
   function mermaidVars(theme, m) {
     var t = THEMES[theme][m];
-    return Object.assign({ fontFamily:'inherit', fontSize:'15px' }, BASE[m], {
+    return Object.assign({ fontFamily:'-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif', fontSize:'15px' }, BASE[m], {
       primaryColor:t.node, primaryBorderColor:t.nodeBr, primaryTextColor:t.nodeFg, lineColor:t.accent,
       mainBkg:t.node, actorBkg:t.node, actorBorder:t.nodeBr, actorTextColor:t.nodeFg });
   }
