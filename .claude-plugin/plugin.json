@@ -2,7 +2,7 @@
   "name": "visual-artifacts",
   "description": "Turn any project, codebase, or idea into one shareable HTML 'Visual Artifact' — a diagram-driven explainer with three tabs (Technical Architecture / User Workflow / Business Strategy) a human can see and an agent can read straight from the HTML, no OCR. Self-contained by default: works offline, on localhost, or published to any static host.",
   "version": "0.1.0",
-  "author": { "name": "ashis-genda", "email": "ashis.gajula11@gmail.com" },
+  "author": { "name": "svag2003", "email": "159192515+svag2003@users.noreply.github.com" },
   "homepage": "https://github.com/svag2003/visual-artifacts",
   "license": "MIT"
 }

@@ -1,6 +1,6 @@
 {
   "name": "visual-artifacts",
-  "owner": { "name": "ashis-genda", "email": "ashis.gajula11@gmail.com" },
+  "owner": { "name": "svag2003", "email": "159192515+svag2003@users.noreply.github.com" },
   "metadata": {
     "description": "Visual Artifacts — a Claude Code skill that turns any project or idea into a shareable, diagram-driven HTML explainer. Install: /plugin marketplace add svag2003/visual-artifacts  then  /plugin install visual-artifacts@visual-artifacts",
     "version": "0.1.0"
@@ -11,7 +11,7 @@
       "source": "./",
       "description": "Diagram-driven HTML explainers (Technical Architecture / User Workflow / Business Strategy) of any project — readable by both humans and agents.",
       "version": "0.1.0",
-      "author": { "name": "ashis-genda", "email": "ashis.gajula11@gmail.com" }
+      "author": { "name": "svag2003", "email": "159192515+svag2003@users.noreply.github.com" }
     }
   ]
 }
