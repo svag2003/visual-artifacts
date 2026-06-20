@@ -17,12 +17,23 @@
 /plugin install visual-artifacts@visual-artifacts
 ```
 
-Then point it at anything:
+## Use it — `/html-it <anything>`
+
+Once installed, just point the skill at a repo, a folder, or even an idea in plain English:
 
 ```
 /visual-artifacts:html-it ./my-project
+/visual-artifacts:html-it ./services/payments-api
 /visual-artifacts:html-it "a webhook that posts Stripe events to Slack"
 ```
+
+> **You don't have to remember the namespace** — just tell Claude **“html-it ./my-project”** and the skill kicks in.
+
+**What the skill does when you run it:**
+
+🗂 `point it at a target` → ⚡ **`/html-it` reads it** → 📑 `writes 3 diagram-led tabs` → 📄 **one self-contained `.html`** → 🔗 `open it, or host it to share`
+
+No config, no setup. The skill inspects whatever you point it at — the README, the code layout, the configs, or just your description — and draws the **Technical / User / Business** views for you. You get a file you can open immediately, or drop on any host for a link that works for both people and agents.
 
 ## Three lenses, one file
 
