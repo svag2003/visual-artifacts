@@ -4,10 +4,10 @@
 
 <p align="center">
   <a href="https://svag2003.github.io/visual-artifacts/">
-    <img src="media/technical.png" alt="A Visual Artifact — the Technical Architecture tab, showing a rendered flow diagram" width="820">
+    <img src="media/demo.gif" alt="The Visual Artifacts demo — switching the three lenses, recoloring the theme live, and zooming a diagram" width="820">
   </a>
   <br>
-  <b><a href="https://svag2003.github.io/visual-artifacts/">▶ Open the live example</a></b> &nbsp;·&nbsp; switch tabs, hit the 🖌 to change theme / style / mode, tap a diagram to zoom
+  <b><a href="https://svag2003.github.io/visual-artifacts/">▶ Open the live example</a></b> &nbsp;·&nbsp; or <a href="media/demo.mp4">watch the full clip</a> &nbsp;·&nbsp; switch tabs, hit the 🖌 to change theme / style / mode, tap a diagram to zoom
 </p>
 
 ## Install
