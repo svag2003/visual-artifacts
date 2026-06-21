@@ -7,7 +7,7 @@
     <img src="media/technical.png" alt="A Visual Artifact — the Technical Architecture tab, showing a rendered flow diagram" width="820">
   </a>
   <br>
-  <b><a href="https://svag2003.github.io/visual-artifacts/">▶ Open the live example</a></b> &nbsp;·&nbsp; switch tabs, flip themes, tap a diagram to zoom
+  <b><a href="https://svag2003.github.io/visual-artifacts/">▶ Open the live example</a></b> &nbsp;·&nbsp; switch tabs, hit the 🖌 to change theme / style / mode, tap a diagram to zoom
 </p>
 
 ## Install
@@ -48,6 +48,7 @@ Every artifact has three tabs — each **led by a real diagram**, not paragraphs
 
 - 👤 **A human** opens it and sees the picture.
 - 🤖 **An agent** fetches the *same URL* and reads the architecture straight from the HTML — the diagrams are [Mermaid](https://mermaid.js.org) *text*, so no OCR or screenshot-parsing.
+- 📋 **One-click "Copy for agent"** exports the whole artifact as markdown, so you can paste the diagrams + structure straight into another LLM.
 
 That's the whole point: faster communication between people and agents, on one link.
 
@@ -56,7 +57,7 @@ That's the whole point: faster communication between people and agents, on one l
 One self-contained `.html` file, saved to `visual-artifacts/`:
 
 - **Private & offline by default** — Mermaid is baked in, so it makes **zero** outside calls. Open it, serve it on `localhost`, or email it.
-- **Themeable · mobile · zoomable** — 5 color themes, a layout that reflows on phones, and tap-to-zoom diagrams.
+- **Customize live (🖌 top-right)** — a paintbrush popover with **themes** (5 palettes + any color), **3 styles** (Professional / Casual / Silly — they even reshape the diagram nodes), and **Light / Dark / Auto**. Plus **deep-linkable tabs** (`#lens-…`), tap-to-zoom diagrams, and a responsive mobile layout — all instant and persisted.
 - **Publish anywhere** — it's static. GitHub Pages, S3 + CloudFront, Netlify, or a plain web server.
 
 <details>

@@ -65,7 +65,7 @@ Do not HTML-escape inside `<pre class="mermaid">` — write raw Mermaid. (Avoid 
 - Two diagrams side by side: wrap them in `<div class="grid2">…two `<figure class="diagram">`…</div>`.
 - Section headers: `<h2>UPPERCASE LABEL</h2>`; open a tab with a single `<p class="lead">` line — then go visual.
 
-**Mobile, zoom, and color themes are automatic** — the template is responsive (matrix/flow reflow on phones), makes every `<figure class="diagram">` tap-to-zoom (pinch / drag / wheel), and ships a built-in **theme switcher** (5 palettes — Amber, Indigo, Emerald, Rose, Slate) that re-themes both the UI and the Mermaid diagrams and persists the choice. Author normally with the component-kit classes and let diagram colors come from the theme — **do not hardcode colors** anywhere (no inline `style="color:…"`, no Mermaid `%%{init}%%` color blocks), or you break theme switching.
+**Customization, mobile, and zoom are automatic** — every artifact ships a top-right **paintbrush popover** with: a **theme** switcher (5 palettes + pick-any-color), **3 styles** (Professional / Casual / Silly — typography, corners, even diagram-node shape), **Light / Dark / Auto**, and a one-click **📋 Copy for agent** (exports the whole artifact's diagrams + structure as markdown to paste into another LLM). Diagrams are **tap-to-zoom** (pinch / drag / wheel, opens fit-to-screen on mobile); tabs are **deep-linkable** (`<url>#lens-technical|user|business`); the layout is responsive. It's all instant (CSS-driven, no re-render), persisted, and free — you author normally and let diagram colors come from the theme. **Do not hardcode colors** anywhere (no inline `style="color:…"`, no Mermaid `%%{init}%%` color blocks), or you break theme switching.
 
 Light emoji icons (`<span class="i">`) on nodes/cards/headers are encouraged as visual anchors — one per item, tasteful, never decorative clutter.
 
@@ -80,6 +80,7 @@ python3 <skill>/references/build.py visual-artifacts/<slug>--<date>.html
 ```
 - **Default = self-contained:** inlines Mermaid (~3.3 MB) so the file works fully offline, on `localhost`, or emailed — and makes zero outside calls (private by default).
 - **`--lightweight`:** swaps in a CDN `<script>` (tiny file, needs internet). Use only when publishing many artifacts to one host.
+- **Lint:** the build prints `N diagrams / M lenses` and **warns** (non-fatal) if a lens has no diagram or a diagram's type is unrecognized — fix those before sharing.
 
 If `references/mermaid.min.js` is missing (fresh install), vendor it once:
 `curl -fsSL https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js -o <skill>/references/mermaid.min.js`

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="amber">
+<html lang="en" data-theme="amber" data-style="casual">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -18,68 +18,171 @@
     --border:#e6e7ea; --card-bg:#fbfbfc; --card-bg2:#f6f7f9;
     --ai:#eff6ff; --ai-br:#93c5fd; --ai-fg:#1e3a8a;
     --ok:#16a34a; --warn:#d97706; --bad:#dc2626; --idle:#9ca3af; --track:#e5e7eb;
-    --shadow:0 1px 2px rgba(16,18,20,.04), 0 6px 20px rgba(16,18,20,.05);
+    --shadow:0 1px 3px rgba(16,18,20,.05);
     /* themed (overridden by JS per selected theme) */
     --accent:#b45309; --node:#fff7ed; --node-br:#fb923c; --node-fg:#7c2d12;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:#0d0f11; --fg:#e8e8ea; --muted:#9aa4b2; --code-bg:#1f2428;
-      --border:#272c33; --card-bg:#151a1e; --card-bg2:#11161a;
-      --ai:#11203a; --ai-br:#3b6bb5; --ai-fg:#bfdbfe;
-      --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; --idle:#6b7280; --track:#272c33;
-      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
-      --accent:#f59e0b; --node:#2a1c0c; --node-br:#b45309; --node-fg:#fde3c4;
-    }
+  html[data-mode="dark"] {
+    --bg:#0d0f11; --fg:#e8e8ea; --muted:#9aa4b2; --code-bg:#1f2428;
+    --border:#272c33; --card-bg:#151a1e; --card-bg2:#11161a;
+    --ai:#11203a; --ai-br:#3b6bb5; --ai-fg:#bfdbfe;
+    --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; --idle:#6b7280; --track:#272c33;
+    --shadow:0 1px 3px rgba(0,0,0,.28);
+    --accent:#f59e0b; --node:#2a1c0c; --node-br:#b45309; --node-fg:#fde3c4;
   }
   * { box-sizing:border-box; }
-  body { margin:0; background:
-      radial-gradient(1200px 420px at 50% -160px, color-mix(in srgb, var(--accent) 9%, transparent), transparent),
-      var(--bg);
-    color:var(--fg); font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  body { margin:0; background:var(--bg);
+    color:var(--fg); font:17px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%; }
-  main { max-width:1000px; margin:0 auto; padding:0 24px 96px; }
+  main { max-width:1080px; margin:0 auto; padding:0 24px 120px; }
 
-  header.doc { padding:40px 0 8px; }
+  header.doc { padding:52px 0 20px; }
   header.doc .toprow { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
   header.doc .kicker { display:inline-block; font-size:.72em; font-weight:700; letter-spacing:.08em;
     text-transform:uppercase; color:var(--accent); border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border));
     background:color-mix(in srgb,var(--accent) 8%,var(--card-bg)); padding:3px 11px; border-radius:999px; margin-bottom:12px; }
-  header.doc h1 { font-size:2.1em; line-height:1.15; margin:0 0 .12em; letter-spacing:-.01em; }
-  header.doc .subtitle { color:var(--muted); margin:0 0 .35em; max-width:76ch; font-size:1.05em; }
+  header.doc h1 { font-size:2.7em; line-height:1.08; margin:0 0 .18em; letter-spacing:-.02em; }
+  header.doc .subtitle { color:var(--muted); margin:0 0 .5em; max-width:60ch; font-size:1.18em; line-height:1.5; }
   header.doc .stamp { color:var(--muted); font-size:.8em; }
 
   .themepick { display:flex; gap:8px; align-items:center; flex:0 0 auto; padding-top:2px; }
   .themepick .lbl { font-size:.7em; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-right:2px; }
-  .themepick button { width:22px; height:22px; border-radius:50%; border:2px solid var(--border);
+  .themepick button { width:30px; height:30px; border-radius:50%; border:2px solid var(--border);
     background:var(--sw); cursor:pointer; padding:0; transition:transform .1s ease; }
   .themepick button:hover { transform:scale(1.14); }
   .themepick button[aria-pressed="true"] { border-color:var(--bg); box-shadow:0 0 0 2px var(--sw); }
+  .themepick .custom { width:30px; height:30px; line-height:0; display:inline-flex; }
+  .themepick input[type=color] { -webkit-appearance:none; appearance:none; width:30px; height:30px; padding:0;
+    border:2px dashed var(--border); border-radius:50%; background:none; cursor:pointer; transition:transform .1s ease; }
+  .themepick input[type=color]:hover { transform:scale(1.14); }
+  .themepick input[type=color]::-webkit-color-swatch-wrapper { padding:0; }
+  .themepick input[type=color]::-webkit-color-swatch { border:none; border-radius:50%; }
+  .themepick input[type=color]::-moz-color-swatch { border:none; border-radius:50%; }
+  .themepick .custom.on input[type=color] { border-style:solid; border-color:var(--bg); box-shadow:0 0 0 2px var(--sw); }
+  /* ===== controls bar: Style + Theme (prominent, not a tiny menu) ===== */
+  .controls { display:flex; flex-wrap:wrap; align-items:center; gap:14px 28px; margin:24px 0 2px; padding:18px 0 0; border-top:1px solid var(--border); }
+  .ctl { display:flex; align-items:center; gap:10px; }
+  .ctl .lbl { font-size:.72em; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:0; }
+  .seg { display:inline-flex; gap:2px; padding:3px; border:1px solid var(--border); border-radius:999px; background:var(--card-bg); }
+  .seg button { appearance:none; border:0; background:transparent; color:var(--muted); font:inherit; font-weight:600;
+    font-size:.9em; padding:8px 16px; border-radius:999px; cursor:pointer; transition:all .12s ease; }
+  .seg button:hover { color:var(--fg); }
+  .seg button[aria-pressed="true"] { background:var(--accent); color:#fff; }
+  html[data-mode="dark"] .seg button[aria-pressed="true"] { color:#0d0f11; }
+  /* ===== customize popover (paintbrush button, top-right) ===== */
+  .fab { position:fixed; top:14px; right:14px; z-index:30; width:46px; height:46px; border-radius:50%;
+    border:1px solid var(--border); background:var(--card-bg); color:var(--accent); cursor:pointer;
+    box-shadow:0 4px 16px rgba(0,0,0,.16); display:flex; align-items:center; justify-content:center;
+    transition:transform .12s ease, border-color .12s ease, background .12s ease; }
+  .fab:hover { transform:scale(1.08); border-color:color-mix(in srgb,var(--accent) 45%,var(--border)); }
+  .fab[aria-expanded="true"] { background:var(--accent); color:#fff; }
+  html[data-mode="dark"] .fab[aria-expanded="true"] { color:#0d0f11; }
+  .custpanel { position:fixed; top:68px; right:14px; z-index:31; width:min(290px, calc(100vw - 24px));
+    background:var(--card-bg); border:1px solid var(--border); border-radius:16px;
+    box-shadow:0 12px 36px rgba(0,0,0,.24); padding:16px; display:flex; flex-direction:column; gap:15px;
+    animation:pop .14s ease; }
+  .custpanel[hidden] { display:none; }
+  @keyframes pop { from { opacity:0; transform:translateY(-6px) scale(.97); } to { opacity:1; transform:none; } }
+  .custpanel .cphead { font-weight:750; font-size:.95em; letter-spacing:-.01em; }
+  .custpanel .ctl { flex-direction:column; align-items:stretch; gap:9px; }
+  .custpanel .ctl .lbl { font-size:.7em; }
+  .custpanel .seg { width:100%; }
+  .custpanel .seg button { flex:1 1 0; padding:8px 4px; font-size:.8em; }
+  .custpanel .themepick { display:flex; flex-direction:row; flex-wrap:wrap; gap:9px; align-items:center; }
+  .custpanel .themepick .lbl { width:100%; margin-bottom:1px; }
+  .custpanel .copybtn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:10px;
+    border:1px solid var(--accent); border-radius:11px; background:color-mix(in srgb,var(--accent) 12%,var(--card-bg));
+    color:var(--accent); font:inherit; font-weight:700; font-size:.86em; cursor:pointer; transition:all .12s ease; }
+  .custpanel .copybtn:hover { background:var(--accent); color:#fff; }
+  html[data-mode="dark"] .custpanel .copybtn:hover { color:#0d0f11; }
+  .custpanel .copybtn.done { background:var(--ok); border-color:var(--ok); color:#fff; }
+  .custpanel .copybtn .ci { font-size:1.05em; line-height:1; }
+  .custpanel .cpdiv { height:1px; background:var(--border); margin:1px 0; }
+  /* keep diagram text in the measured font regardless of Style (prevents clipping) */
+  .mermaid svg, .mermaid svg foreignObject div, .mermaid svg text { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif !important; }
+  /* ===== Style personalities (chrome only — instant, no diagram re-render) ===== */
+  /* PROFESSIONAL — editorial & formal: serif everywhere, flat, sharp corners, outlined badges, no emoji */
+  html[data-style="professional"] body { font-family:Georgia,"Times New Roman",Times,serif; }
+  html[data-style="professional"] h1, html[data-style="professional"] h2 { letter-spacing:0; }
+  html[data-style="professional"] .i { display:none; }
+  html[data-style="professional"] h2::before { background:transparent; color:var(--accent); border:1.5px solid var(--accent); border-radius:3px; }
+  html[data-style="professional"] figure.diagram, html[data-style="professional"] .cell, html[data-style="professional"] .stat,
+  html[data-style="professional"] .quad, html[data-style="professional"] .callout, html[data-style="professional"] .node, html[data-style="professional"] .frow,
+  html[data-style="professional"] table, html[data-style="professional"] nav.tabs button, html[data-style="professional"] .seg,
+  html[data-style="professional"] .seg button, html[data-style="professional"] .custpanel, html[data-style="professional"] .kicker { border-radius:3px !important; }
+  html[data-style="professional"] figure.diagram, html[data-style="professional"] .cell, html[data-style="professional"] .stat,
+  html[data-style="professional"] .quad, html[data-style="professional"] .callout { box-shadow:none !important; }
+  html[data-style="professional"] .cell:hover, html[data-style="professional"] .quad:hover { transform:none; }
 
-  nav.tabs { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 14px; position:sticky; top:0;
-    background:linear-gradient(var(--bg) 72%, transparent); padding:10px 0; z-index:5; }
+  /* SILLY — playful & bubbly: Comic Sans, dotted backdrop, dashed + tilted cards, fat round corners */
+  html[data-style="silly"] body { font-family:"Comic Sans MS","Comic Sans","Chalkboard SE","Marker Felt",cursive;
+    background:radial-gradient(circle at 1px 1px, color-mix(in srgb,var(--accent) 16%,transparent) 1.4px, transparent 0) 0 0 / 24px 24px, var(--bg); }
+  html[data-style="silly"] .kicker { transform:rotate(-3deg); }
+  html[data-style="silly"] h2::before { transform:rotate(-10deg); }
+  html[data-style="silly"] .i { font-size:1.18em; }
+  html[data-style="silly"] figure.diagram, html[data-style="silly"] .cell, html[data-style="silly"] .quad, html[data-style="silly"] .callout { border-style:dashed !important; border-width:2px !important; }
+  html[data-style="silly"] .cell:nth-of-type(odd), html[data-style="silly"] .quad:nth-of-type(odd) { transform:rotate(-1deg); }
+  html[data-style="silly"] .cell:nth-of-type(even), html[data-style="silly"] .quad:nth-of-type(even) { transform:rotate(1deg); }
+  html[data-style="silly"] .cell:hover, html[data-style="silly"] .quad:hover { transform:translateY(-4px) scale(1.03) rotate(0); }
+  html[data-style="silly"] nav.tabs button[aria-selected="true"] { transform:rotate(-1.5deg); }
+  html[data-style="silly"] figure.diagram, html[data-style="silly"] .cell, html[data-style="silly"] .stat,
+  html[data-style="silly"] .quad, html[data-style="silly"] .callout, html[data-style="silly"] .node, html[data-style="silly"] .frow,
+  html[data-style="silly"] nav.tabs button, html[data-style="silly"] .seg, html[data-style="silly"] .seg button { border-radius:22px !important; }
+  /* style reaches into the diagrams: sharp nodes (professional) vs round bubbly nodes (silly) */
+  html[data-style="professional"] .mermaid svg .node rect, html[data-style="professional"] .mermaid svg .cluster rect,
+  html[data-style="professional"] .mermaid svg .actor { rx:1px !important; ry:1px !important; }
+  html[data-style="silly"] .mermaid svg .node rect, html[data-style="silly"] .mermaid svg .cluster rect,
+  html[data-style="silly"] .mermaid svg .actor { rx:15px !important; ry:15px !important; }
+  /* ===== Option A: recolor Mermaid via CSS variables (no re-render) ===== */
+  .mermaid svg .node rect, .mermaid svg .node circle, .mermaid svg .node ellipse,
+  .mermaid svg .node polygon, .mermaid svg .node path { fill:var(--node)!important; stroke:var(--node-br)!important; }
+  .mermaid svg .nodeLabel, .mermaid svg .node .label, .mermaid svg .node foreignObject div { color:var(--node-fg)!important; fill:var(--node-fg)!important; }
+  .mermaid svg .cluster rect { fill:color-mix(in srgb,var(--node) 55%,transparent)!important; stroke:var(--node-br)!important; }
+  .mermaid svg .cluster .nodeLabel, .mermaid svg .cluster text { fill:var(--fg)!important; color:var(--fg)!important; }
+  .mermaid svg .edgePath .path, .mermaid svg .edgePath path, .mermaid svg path.flowchart-link, .mermaid svg .flowchart-link { stroke:var(--accent)!important; }
+  .mermaid svg marker path, .mermaid svg defs marker path, .mermaid svg .marker { fill:var(--accent)!important; stroke:var(--accent)!important; }
+  .mermaid svg .edgeLabel, .mermaid svg .edgeLabel *, .mermaid svg .edgeLabel foreignObject div { color:var(--accent)!important; fill:var(--accent)!important; background:transparent!important; }
+  .mermaid svg .edgeLabel rect { fill:var(--bg)!important; }
+  .mermaid svg .actor, .mermaid svg rect.actor { fill:var(--node)!important; stroke:var(--node-br)!important; }
+  .mermaid svg text.actor, .mermaid svg .actor tspan, .mermaid svg .actor-box, .mermaid svg .actor > tspan { fill:var(--node-fg)!important; }
+  .mermaid svg .actor-line { stroke:var(--node-br)!important; }
+  .mermaid svg .messageLine0, .mermaid svg .messageLine1 { stroke:var(--accent)!important; }
+  .mermaid svg .messageText { fill:var(--fg)!important; }
+  .mermaid svg line.loopLine { stroke:var(--accent)!important; }
+  .mermaid svg .loopText, .mermaid svg .loopText tspan, .mermaid svg .labelText, .mermaid svg .labelText tspan { fill:var(--fg)!important; }
+  .mermaid svg .labelBox { fill:var(--node)!important; stroke:var(--node-br)!important; }
+  .mermaid svg .activation0, .mermaid svg .activation1, .mermaid svg .activation2 { fill:var(--node)!important; stroke:var(--node-br)!important; }
+  .mermaid svg .note { fill:var(--node)!important; stroke:var(--node-br)!important; }
+  .mermaid svg .noteText, .mermaid svg .noteText tspan { fill:var(--node-fg)!important; }
+
+  nav.tabs { display:flex; flex-wrap:wrap; gap:10px; margin:8px 0 34px; position:sticky; top:0;
+    background:linear-gradient(var(--bg) 74%, transparent); padding:14px 0; z-index:5; }
   nav.tabs button { appearance:none; border:1px solid var(--border); background:var(--card-bg);
-    color:var(--muted); font:inherit; font-weight:600; font-size:.92em; padding:8px 16px;
+    color:var(--muted); font:inherit; font-weight:600; font-size:1em; padding:11px 22px;
     cursor:pointer; border-radius:999px; transition:all .12s ease; }
   nav.tabs button:hover { color:var(--fg); }
   nav.tabs button[aria-selected="true"] { color:#fff; background:var(--accent);
     border-color:var(--accent); box-shadow:var(--shadow); }
-  @media (prefers-color-scheme: dark) { nav.tabs button[aria-selected="true"] { color:#0d0f11; } }
+  html[data-mode="dark"] nav.tabs button[aria-selected="true"] { color:#0d0f11; }
   section.view { display:none; } section.view.active { display:block; animation:fade .2s ease; }
   @keyframes fade { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
 
-  h2 { font-size:.86em; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
-    margin:2em 0 .5em; display:flex; align-items:center; gap:8px; }
-  h2::before { content:""; width:14px; height:3px; border-radius:2px; background:var(--accent); flex:0 0 auto; }
-  h2:first-of-type { margin-top:.6em; }
-  .lead { font-size:1.08em; line-height:1.5; margin:.2em 0 1.1em; max-width:80ch; color:var(--fg); }
+  section.view { counter-reset:sec; }
+  h2 { font-size:1.4em; font-weight:750; letter-spacing:-.01em; color:var(--fg);
+    margin:2em 0 .7em; display:flex; align-items:center; gap:14px; line-height:1.25; }
+  h2::before { counter-increment:sec; content:counter(sec);
+    width:1.7em; height:1.7em; flex:0 0 auto; display:flex; align-items:center; justify-content:center;
+    font-size:.66em; font-weight:800; color:#fff; background:var(--accent); border-radius:50%; }
+  html[data-mode="dark"] h2::before { color:#0d0f11; }
+  h2:first-of-type { margin-top:1em; }
+  .lead { font-size:1.22em; line-height:1.55; margin:.2em 0 1.5em; max-width:68ch; color:var(--fg); font-weight:450; }
   p, li { max-width:80ch; } li { margin:.3em 0; }
   a { color:var(--accent); }
   code { font:.85em ui-monospace, Menlo, Consolas, monospace; background:var(--code-bg);
     padding:.12em .4em; border-radius:5px; }
 
-  figure.diagram { position:relative; cursor:zoom-in; margin:.5em 0 1.4em; padding:22px 18px;
-    background:var(--card-bg); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow);
+  figure.diagram { position:relative; cursor:zoom-in; margin:1em 0 2.4em; padding:34px 26px;
+    background:var(--card-bg); border:1px solid var(--border); border-radius:20px; box-shadow:var(--shadow);
     transition:border-color .15s ease; }
   figure.diagram:hover { border-color:color-mix(in srgb,var(--accent) 40%,var(--border)); }
   figure.diagram::after { content:"⤢"; position:absolute; top:10px; right:10px; width:28px; height:28px;
@@ -88,8 +191,8 @@
   figure.diagram:hover::after { opacity:1; color:var(--accent); }
   figure.diagram .mermaid { display:flex; justify-content:center; overflow-x:auto; }
   figure.diagram .mermaid svg { max-width:100%; height:auto; }
-  figure.diagram figcaption { color:var(--muted); font-size:.84em; text-align:center;
-    margin-top:12px; padding-top:10px; border-top:1px dashed var(--border); }
+  figure.diagram figcaption { color:var(--muted); font-size:.95em; text-align:center;
+    margin-top:18px; padding-top:14px; border-top:1px solid var(--border); max-width:none; }
   .grid2 { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:14px; }
   .grid2 figure.diagram { margin:.3em 0; }
 
@@ -113,7 +216,7 @@
   .dot.ok{background:var(--ok);} .dot.warn{background:var(--warn);} .dot.idle{background:var(--idle);} .dot.bad{background:var(--bad);}
   .stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:12px; margin:.5em 0 1.3em; }
   .stat { background:var(--card-bg); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:var(--shadow); }
-  .stat .num { font-size:1.7em; font-weight:800; display:block; color:var(--accent); letter-spacing:-.02em; }
+  .stat .num { font-size:2.2em; font-weight:800; display:block; color:var(--accent); letter-spacing:-.02em; }
   .stat .label { color:var(--muted); font-size:.79em; line-height:1.35; display:block; margin-top:4px; }
   .funnel { display:flex; flex-direction:column; align-items:center; gap:6px; margin:.5em 0 1.3em; }
   .frow { text-align:center; border-radius:10px; padding:10px 16px; font-weight:600; font-size:.92em;
@@ -154,19 +257,34 @@
   .lbx .stage { flex:1; overflow:hidden; display:flex; align-items:center; justify-content:center;
     touch-action:none; cursor:grab; }
   .lbx .stage:active { cursor:grabbing; }
-  .lbx .stage svg { max-width:none !important; max-height:none !important; transform-origin:center center; will-change:transform; }
+  .lbx .stage svg { max-width:100% !important; max-height:100% !important; transform-origin:center center; will-change:transform; }
 
   @media (max-width:640px) {
-    main { padding:0 14px 76px; }
-    header.doc { padding:24px 0 6px; }
-    header.doc .toprow { flex-direction:column-reverse; align-items:flex-start; gap:10px; }
-    header.doc h1 { font-size:1.55em; }
-    header.doc .subtitle { font-size:.97em; }
-    nav.tabs { gap:6px; margin:14px 0 12px; }
-    nav.tabs button { padding:7px 12px; font-size:.84em; }
-    .lead { font-size:1.02em; }
-    figure.diagram { padding:14px 10px; }
-    h2 { margin:1.6em 0 .4em; }
+    main { padding:0 14px 80px; }
+    header.doc { padding:24px 0 8px; }
+    header.doc .kicker { margin-bottom:10px; }
+    header.doc h1 { font-size:1.7em; line-height:1.12; }
+    header.doc .subtitle { font-size:1em; }
+    /* compact control bar */
+    .controls { gap:12px 16px; margin:18px 0 2px; padding:14px 0 0; }
+    .ctl { gap:8px; }
+    .seg button { padding:7px 12px; font-size:.85em; }
+    .themepick { gap:7px; }
+    .themepick button, .themepick .custom, .themepick input[type=color] { width:28px; height:28px; }
+    /* full-width segmented tabs — no awkward scroll cut-off */
+    nav.tabs { gap:6px; margin:14px 0 20px; padding:10px 50px 10px 0; }
+    nav.tabs button { flex:1 1 0; min-width:0; padding:9px 6px; font-size:.8em; text-align:center; line-height:1.18; }
+    .lead { font-size:1.06em; line-height:1.5; }
+    /* diagrams: use the width, and make tap-to-zoom obvious (key for reading dense diagrams on a phone) */
+    figure.diagram { padding:14px 10px; margin:.8em 0 1.8em; }
+    figure.diagram::after { content:"⤢ Tap to zoom"; opacity:1; top:8px; right:8px;
+      width:auto; height:auto; padding:5px 11px; font-size:.74em; font-weight:700; letter-spacing:.01em;
+      color:var(--accent); border-radius:999px;
+      background:color-mix(in srgb,var(--accent) 13%,var(--card-bg));
+      border:1px solid color-mix(in srgb,var(--accent) 32%,var(--border)); }
+    figure.diagram figcaption { font-size:.86em; }
+    h2 { font-size:1.18em; margin:1.5em 0 .5em; gap:10px; }
+    .stats { grid-template-columns:1fr 1fr; }
     .matrix { grid-template-columns:1fr; }
     .flow { flex-direction:column; align-items:stretch; }
     .flow .arrow { transform:rotate(90deg); padding:3px 0; }
@@ -181,24 +299,43 @@
     body { font-size:11px; } figure.diagram,.cell,.stat,.callout,.quad,.frow,.node { box-shadow:none; }
   }
 </style>
+<script>/* set mode/style/theme from saved prefs before paint (no flash) */(function(){try{var r=document.documentElement;var m=localStorage.getItem('va-mode')||'auto';r.setAttribute('data-mode',(m==='dark'||(m!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?'dark':'light');var s=localStorage.getItem('va-style');if(s)r.setAttribute('data-style',s);var t=localStorage.getItem('va-theme');if(t&&t!=='custom')r.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
+<button class="fab" id="custFab" aria-label="Customize appearance" aria-expanded="false" title="Customize">
+  <svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor" aria-hidden="true"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37-1.34-1.34a.9959.9959 0 0 0-1.41 0L9 12.25 11.75 15l8.96-8.96a.9959.9959 0 0 0 0-1.41z"/></svg>
+</button>
+<div class="custpanel" id="custPanel" hidden>
+  <button class="copybtn" id="copyAgent" type="button" title="Copy the diagrams + structure as text to paste into an LLM/agent"><span class="ci">📋</span><span class="ct">Copy for agent</span></button>
+  <div class="cpdiv"></div>
+  <div class="ctl"><span class="lbl">Appearance</span>
+    <div class="seg modepick" role="group" aria-label="Appearance">
+      <button data-mode="light">Light</button>
+      <button data-mode="dark">Dark</button>
+      <button data-mode="auto">Auto</button>
+    </div>
+  </div>
+  <div class="ctl"><span class="lbl">Style</span>
+    <div class="seg stylepick" role="group" aria-label="Style">
+      <button data-style="professional">Professional</button>
+      <button data-style="casual">Casual</button>
+      <button data-style="silly">Silly</button>
+    </div>
+  </div>
+  <div class="ctl themepick" role="group" aria-label="Color theme">
+    <span class="lbl">Theme</span>
+    <button data-theme="amber"   style="--sw:#d97706" aria-label="Amber"></button>
+    <button data-theme="indigo"  style="--sw:#4f46e5" aria-label="Indigo"></button>
+    <button data-theme="emerald" style="--sw:#059669" aria-label="Emerald"></button>
+    <button data-theme="rose"    style="--sw:#e11d48" aria-label="Rose"></button>
+    <button data-theme="slate"   style="--sw:#64748b" aria-label="Slate"></button>
+    <label class="custom" title="Pick any color" style="--sw:#d97706"><input type="color" data-custom value="#d97706" aria-label="Custom theme color"></label>
+  </div>
+</div>
 <main>
   <header class="doc">
-    <div class="toprow">
-      <div>
-        <span class="kicker">Visual Artifact</span>
-        <h1>{{TITLE}}</h1>
-      </div>
-      <div class="themepick" role="group" aria-label="Color theme">
-        <span class="lbl">Theme</span>
-        <button data-theme="amber"   style="--sw:#d97706" aria-label="Amber"></button>
-        <button data-theme="indigo"  style="--sw:#4f46e5" aria-label="Indigo"></button>
-        <button data-theme="emerald" style="--sw:#059669" aria-label="Emerald"></button>
-        <button data-theme="rose"    style="--sw:#e11d48" aria-label="Rose"></button>
-        <button data-theme="slate"   style="--sw:#64748b" aria-label="Slate"></button>
-      </div>
-    </div>
+    <span class="kicker">Visual Artifact</span>
+    <h1>{{TITLE}}</h1>
     <p class="subtitle">{{SUBTITLE}}</p>
     <p class="stamp">Generated {{DATE}} · statuses reflect that date · tap any diagram to zoom</p>
   </header>
@@ -245,10 +382,25 @@
       labelBoxBkgColor:'#151a1e', labelBoxBorderColor:'#272c33', labelTextColor:'#e8e8ea', loopTextColor:'#9aa4b2',
       noteBkgColor:'#11203a', noteBorderColor:'#3b6bb5', noteTextColor:'#bfdbfe' }
   };
-  function mode() { return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  // derive a full {light,dark} palette from ANY accent hex, shaped like the presets
+  function _hx(h){h=String(h).replace('#','');if(h.length===3)h=h.split('').map(function(c){return c+c}).join('');return {r:parseInt(h.slice(0,2),16),g:parseInt(h.slice(2,4),16),b:parseInt(h.slice(4,6),16)};}
+  function _h2(n){n=Math.max(0,Math.min(255,Math.round(n)));return ('0'+n.toString(16)).slice(-2);}
+  function mix(a,b,t){var A=_hx(a),B=_hx(b);return '#'+_h2(A.r+(B.r-A.r)*t)+_h2(A.g+(B.g-A.g)*t)+_h2(A.b+(B.b-A.b)*t);}
+  function deriveTheme(hex){
+    return {
+      light:{ accent:mix(hex,'#000000',0.12), node:mix(hex,'#ffffff',0.92), nodeBr:mix(hex,'#ffffff',0.45), nodeFg:mix(hex,'#000000',0.45) },
+      dark:{  accent:mix(hex,'#ffffff',0.14), node:mix(hex,'#0d0f11',0.86), nodeBr:mix(hex,'#000000',0.18), nodeFg:mix(hex,'#ffffff',0.78) }
+    };
+  }
+  var modeChoice = 'auto';
+  try { modeChoice = localStorage.getItem('va-mode') || 'auto'; } catch (e) {}
+  function mode() {
+    if (modeChoice === 'light' || modeChoice === 'dark') return modeChoice;
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
   function mermaidVars(theme, m) {
     var t = THEMES[theme][m];
-    return Object.assign({ fontFamily:'-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif', fontSize:'15px' }, BASE[m], {
+    return Object.assign({ fontFamily:'-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif', fontSize:'18px' }, BASE[m], {
       primaryColor:t.node, primaryBorderColor:t.nodeBr, primaryTextColor:t.nodeFg, lineColor:t.accent,
       mainBkg:t.node, actorBkg:t.node, actorBorder:t.nodeBr, actorTextColor:t.nodeFg });
   }
@@ -278,44 +430,131 @@
     document.querySelectorAll('.themepick button').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.theme === theme));
     });
-    if (window.mermaid) {
-      mermaid.initialize({ startOnLoad:false, securityLevel:'strict', theme:'base',
-        themeVariables: mermaidVars(theme, m),
-        flowchart:{ useMaxWidth:true, htmlLabels:true, curve:'basis', padding:14, nodeSpacing:48, rankSpacing:56 },
-        sequence:{ useMaxWidth:true, mirrorActors:false } });
-      resetDiagrams();
-      renderPending(document.querySelector('section.view.active'));
-    }
+    var _cw = document.querySelector('.themepick .custom');
+    if (_cw) _cw.classList.toggle('on', theme === 'custom');
+    // Option A: diagram colors come from the CSS override (var(--accent) etc.) — no Mermaid re-render
   }
 
-  var saved = null; try { saved = localStorage.getItem('va-theme'); } catch (e) {}
-  applyTheme(saved && THEMES[saved] ? saved : 'amber');
+  function applyCustom(hex) {
+    THEMES.custom = deriveTheme(hex);
+    var cw = document.querySelector('.themepick .custom'); if (cw) cw.style.setProperty('--sw', hex);
+    applyTheme('custom');
+    try { localStorage.setItem('va-theme', 'custom'); localStorage.setItem('va-accent', hex); } catch (e) {}
+  }
+
+  // Style = personality (Professional / Casual / Silly). Pure CSS via data-style — instant, no re-render.
+  function applyStyle(style) {
+    if (['professional', 'casual', 'silly'].indexOf(style) < 0) style = 'casual';
+    document.documentElement.setAttribute('data-style', style);
+    document.querySelectorAll('.stylepick button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.style === style)); });
+    try { localStorage.setItem('va-style', style); } catch (e) {}
+  }
+
+  // Appearance = Light / Dark / Auto. Forces data-mode (CSS) + re-themes the palette; persisted.
+  function applyMode(choice) {
+    if (['light', 'dark', 'auto'].indexOf(choice) < 0) choice = 'auto';
+    modeChoice = choice;
+    document.documentElement.setAttribute('data-mode', mode());
+    document.querySelectorAll('.modepick button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.mode === choice)); });
+    try { localStorage.setItem('va-mode', choice); } catch (e) {}
+    applyTheme(currentTheme);
+  }
+
+  var saved = null, savedAccent = null;
+  try { saved = localStorage.getItem('va-theme'); savedAccent = localStorage.getItem('va-accent'); } catch (e) {}
+  var colorInput = document.querySelector('.themepick input[data-custom]');
+  if (saved === 'custom' && savedAccent) {
+    if (colorInput) colorInput.value = savedAccent;
+    applyCustom(savedAccent);
+  } else {
+    applyTheme(saved && THEMES[saved] ? saved : 'amber');
+    if (colorInput) colorInput.value = THEMES[currentTheme].light.accent;
+  }
+  var savedStyle = 'casual'; try { savedStyle = localStorage.getItem('va-style') || 'casual'; } catch (e) {}
+  applyStyle(savedStyle);
+  applyMode(modeChoice);
 
   document.querySelector('.themepick').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-theme]'); if (!b) return;
     applyTheme(b.dataset.theme);
     try { localStorage.setItem('va-theme', b.dataset.theme); } catch (e2) {}
   });
+  if (colorInput) colorInput.addEventListener('input', function () { applyCustom(this.value); });
+  var stylepick = document.querySelector('.stylepick');
+  if (stylepick) stylepick.addEventListener('click', function (e) { var b = e.target.closest('button[data-style]'); if (b) applyStyle(b.dataset.style); });
+  var modepick = document.querySelector('.modepick');
+  if (modepick) modepick.addEventListener('click', function (e) { var b = e.target.closest('button[data-mode]'); if (b) applyMode(b.dataset.mode); });
+
+  // Copy for agent: title + per-lens lead/headings/Mermaid sources as markdown → clipboard
+  function buildAgentText() {
+    var out = [], h1 = document.querySelector('header.doc h1'), sub = document.querySelector('header.doc .subtitle');
+    if (h1) out.push('# ' + h1.textContent.trim());
+    if (sub) out.push(sub.textContent.trim());
+    document.querySelectorAll('section.view').forEach(function (sec) {
+      out.push('', '## ' + (sec.getAttribute('data-printtitle') || sec.dataset.lens || ''));
+      sec.querySelectorAll('.lead, h2, pre.mermaid').forEach(function (el) {
+        if (el.classList.contains('lead')) out.push('', el.textContent.trim());
+        else if (el.tagName === 'H2') out.push('', '### ' + el.textContent.trim());
+        else { var s = (SRC.get(el) || el.textContent || '').trim(); if (s) out.push('', '```mermaid', s, '```'); }
+      });
+    });
+    return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+  }
+  var copyBtn = document.getElementById('copyAgent');
+  if (copyBtn) copyBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var text = buildAgentText(), label = copyBtn.querySelector('.ct'), prev = label ? label.textContent : '';
+    function flash() { copyBtn.classList.add('done'); if (label) label.textContent = 'Copied!'; setTimeout(function () { copyBtn.classList.remove('done'); if (label) label.textContent = prev; }, 1500); }
+    function fallback() { var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e2) {} document.body.removeChild(ta); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(flash, function () { fallback(); flash(); });
+    else { fallback(); flash(); }
+  });
+
+  // customize popover (paintbrush): toggle, close on outside-click / Esc
+  var fab = document.getElementById('custFab'), panel = document.getElementById('custPanel');
+  function setPanel(open) { if (!panel || !fab) return; panel.hidden = !open; fab.setAttribute('aria-expanded', String(open)); }
+  if (fab) fab.addEventListener('click', function (e) { e.stopPropagation(); setPanel(panel.hidden); });
+  if (panel) panel.addEventListener('click', function (e) { e.stopPropagation(); });
+  document.addEventListener('click', function () { if (panel && !panel.hidden) setPanel(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel && !panel.hidden) setPanel(false); });
   if (window.matchMedia) {
     var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(function () { applyTheme(currentTheme); });
+    (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(function () {
+      if (modeChoice === 'auto') { document.documentElement.setAttribute('data-mode', mode()); applyTheme(currentTheme); }
+    });
+  }
+  // Option A: initialize Mermaid ONCE; theme changes only rewrite CSS vars (recolored by the override stylesheet)
+  if (window.mermaid) {
+    mermaid.initialize({ startOnLoad:false, securityLevel:'strict', theme:'base',
+      themeVariables: mermaidVars(currentTheme, mode()),
+      flowchart:{ useMaxWidth:true, htmlLabels:true, curve:'basis', padding:14, nodeSpacing:48, rankSpacing:56 },
+      sequence:{ useMaxWidth:true, mirrorActors:false } });
+    renderPending(document.querySelector('section.view.active'));
   }
 
-  // ---- tabs ----
+  // ---- tabs (deep-linkable: the URL hash reflects the active lens) ----
+  var VIEWS = ['technical', 'user', 'business'];
+  function selectTab(view, updateHash) {
+    if (VIEWS.indexOf(view) < 0) return;
+    document.querySelectorAll('nav.tabs button').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.view === view)); });
+    document.querySelectorAll('section.view').forEach(function (s) { s.classList.toggle('active', s.id === view); });
+    renderPending(document.getElementById(view));
+    if (updateHash) { try { history.replaceState(null, '', '#lens-' + view); } catch (e) {} }
+  }
   document.querySelectorAll('nav.tabs button').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('nav.tabs button').forEach(function (b) { b.setAttribute('aria-selected', String(b === btn)); });
-      document.querySelectorAll('section.view').forEach(function (s) { s.classList.toggle('active', s.id === btn.dataset.view); });
-      renderPending(document.getElementById(btn.dataset.view));
-    });
+    btn.addEventListener('click', function () { selectTab(btn.dataset.view, true); });
   });
+  function viewFromHash() { var m = /^#lens-(technical|user|business)$/.exec(location.hash || ''); return m ? m[1] : null; }
+  var initView = viewFromHash();
+  if (initView) selectTab(initView, false);
+  window.addEventListener('hashchange', function () { var v = viewFromHash(); if (v) selectTab(v, false); });
 
   // ---- zoom viewer: tap a diagram → pinch / drag / wheel ----
   var lbx = document.createElement('div');
   lbx.className = 'lbx';
   lbx.innerHTML = '<div class="bar"><span class="sp">Pinch, drag, or scroll to zoom · Esc to close</span>' +
     '<button data-z="out" aria-label="Zoom out">−</button><button data-z="reset" aria-label="Reset">⟲</button>' +
-    '<button data-z="in" aria-label="Zoom in">+</button><button data-z="close" aria-label="Close">✕</button></div><div class="stage"></div>';
+    '<button data-z="in" aria-label="Zoom in">+</button><button data-z="close" aria-label="Close">✕</button></div><div class="stage mermaid"></div>';
   document.body.appendChild(lbx);
   var stage = lbx.querySelector('.stage');
   var scale = 1, tx = 0, ty = 0;
